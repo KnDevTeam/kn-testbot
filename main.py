@@ -100,7 +100,6 @@ def start(message):
 
     msg_start = bot.reply_to(message, "Эта команда добавит определённого участника в список, данного чата.\n\nЯ сам удалю сообщения через 7 секунд, чтоб не флудить\n\n© KN-IT Team", disable_notification=True)
     sleep(7)
-    bot.delete_message(message.chat.id, msg_start.message_id)
     bot.delete_message(message.chat.id, message.message_id)
 
 
