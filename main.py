@@ -34,7 +34,7 @@ def foo(message):
 def start(message):
 
     username = message.from_user.username
-    msg_start = bot.reply_to(message, f"Привед медвед.: {username}!\nЯ просто тестовый бот,\nРазработан отделом KN - IT.\n\nЯ сам удалю сообщения через 7 секунд, чтоб не флудить\n\n© KN-IT Team", disable_notification=True)
+    msg_start = bot.reply_to(message, f"Привед медвед: {username}!\nЯ просто тестовый бот,\nРазработан отделом KN - IT.\n\nЯ сам удалю сообщения через 7 секунд, чтоб не флудить\n\n© KN-IT Team", disable_notification=True)
     sleep(7)
     bot.delete_message(message.chat.id, msg_start.message_id)
     bot.delete_message(message.chat.id, message.message_id)
