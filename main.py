@@ -118,6 +118,8 @@ def start(message):
 def start(message):
 
     name = message.from_user
+    if name.last_name == None:
+        name.last_name = "No name"
     bot.reply_to(message, f"Имя: {name.first_name}\nФамилия: {name.last_name}\nИмя пользователя: @{name.username}\nuser_id: {name.id}\nЯзык: {name.language_code}\nПремиум аккаунт: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
     sleep(7)
     bot.delete_message(message.chat.id, message.message_id)
