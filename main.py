@@ -118,11 +118,20 @@ def start(message):
 def start(message):
 
     name = message.from_user
+    if name.first_name == None:
+        name.first_name = "Не указанно"
     if name.last_name == None:
-        name.last_name = "No name"
-    bot.reply_to(message, f"Имя: {name.first_name}\nФамилия: {name.last_name}\nИмя пользователя: @{name.username}\nuser_id: {name.id}\nЯзык: {name.language_code}\nПремиум аккаунт: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
+        name.last_name = "Не указанно"
+    if name.username == None:
+        name.username = "Не указанно"
+    if name.is_premium == False:
+        name.is_premium = "Не премиум"
+    else:
+        name.is_premium = "Премиум"
+
+    msg_id = bot.reply_to(message, f"Имя: {name.first_name}\nФамилия: {name.last_name}\nИмя пользователя: @{name.username}\nuser_id: {name.id}\nЯзык: {name.language_code}\nПремиум аккаунт: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
     sleep(7)
-    bot.delete_message(message.chat.id, name.message_id)
+    bot.delete_message(message.chat.id, msg_id.message_id)
     bot.delete_message(message.chat.id, message.message_id)
 
 
