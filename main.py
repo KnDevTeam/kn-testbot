@@ -86,6 +86,8 @@ HELP = '''
 /donate - Эта команда позволит увидеть как можно нас поддержать
 /rules - Эта команда укажет на правила в чате
 
+/mod -  Эта команда команда призовёт модераторов в чат
+
 © KN-IT Team
 '''
 @bot.message_handler(commands=['help'])
@@ -134,7 +136,7 @@ def contact(message):
     bot.delete_message(message.chat.id, msg_contact.message_id)
     bot.delete_message(message.chat.id, message.message_id)
 
-# Handler for help command
+# Handler for DONATE command
 DONATE = '''
 
 🔥СБЕРБАНК
@@ -170,6 +172,18 @@ def donate(message):
     sleep(60)
     bot.delete_message(message.chat.id, msg_donate.message_id)
     bot.delete_message(message.chat.id, message.message_id)
+
+# Handler for mod command
+MODERS = '''
+Модераторы, обратите внимание на пост выше:
+@Yari_kova @Snake_ebet_xoxlov @Ev1LcheF
+
+© KN-IT Team
+'''
+@bot.message_handler(commands=['mod'])
+def moders(message):
+
+    bot.reply_to(message, MODERS)
 
 
 # Handler for all command
