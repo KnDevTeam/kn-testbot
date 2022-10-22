@@ -245,7 +245,7 @@ def start(message):
 def too_many_words(message):
     msg_lens= len(message.text)
     if msg_lens >= 500:
-        bot.reply_to(message, "Зачем такая портянка?\nПожалей участников чата!\nМодераторы - обратите внимание пожалуйта...\n\n© KN-IT Team", disable_notification=True)
+        bot.reply_to(message, "Зачем такая портянка?\nПожалей участников чата!\nМодераторы - обратите внимание пожалуйста...\n\n© KN-IT Team", disable_notification=True)
     else:
         pass
 
