@@ -84,7 +84,7 @@ HELP = '''
 @bot.message_handler(commands=['help'])
 def help(message):
 
-    msg_help = bot.reply_to(message, RULES, disable_notification=True)
+    msg_help = bot.reply_to(message, HELP, disable_notification=True)
     sleep(30)
     bot.delete_message(message.chat.id, msg_help.message_id)
     bot.delete_message(message.chat.id, message.message_id)
@@ -122,7 +122,7 @@ CONTACT = '''
 @bot.message_handler(commands=['contact'])
 def contact(message):
 
-    msg_contact = bot.reply_to(message, RULES, disable_notification=True)
+    msg_contact = bot.reply_to(message, CONTACT, disable_notification=True)
     sleep(120)
     bot.delete_message(message.chat.id, msg_contact.message_id)
     bot.delete_message(message.chat.id, message.message_id)
@@ -159,7 +159,7 @@ TSQGBoX32EkkmpFDg1gcm6QwiHeoDrACNx
 @bot.message_handler(commands=['donate'])
 def donate(message):
 
-    msg_donate = bot.reply_to(message, RULES, disable_notification=True)
+    msg_donate = bot.reply_to(message, DONATE, disable_notification=True)
     sleep(300)
     bot.delete_message(message.chat.id, msg_donate.message_id)
     bot.delete_message(message.chat.id, message.message_id)
