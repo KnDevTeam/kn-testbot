@@ -240,6 +240,14 @@ def start(message):
     bot.delete_message(message.chat.id, msg_id.message_id)
     bot.delete_message(message.chat.id, message.message_id)
 
+# Handler for TOO MANY WORDS
+@bot.message_handler(func=lambda message: True)
+def too_many_words(message):
+    msg_lens= len(message.text)
+    if msg_lens >= 500:
+        bot.reply_to(message, "Mnogo bukav")
+    else:
+        pass
 
 
 
