@@ -32,7 +32,7 @@ def welcome(message):
         name.last_name = ""
     #lastname = message.from_user
     welcome = bot.reply_to(message, f"Привет, {name.first_name}, {name.last_name} добро пожаловать!\nЯ просто бот и просто слежу за порядком.\nНадеюсь про Крым нет необходимости спрашивать? 🤭\nТы можешь посмотреть доступные команды /help\n\n© KN-IT Team")
-    sleep(10)
+    sleep(15)
     bot.delete_message(message.chat.id, welcome.message_id)
 
 
@@ -261,7 +261,7 @@ def start(message):
 def too_many_words(message):
     msg_lens= len(message.text)
     if msg_lens >= 500:
-        bot.reply_to(message, "Зачем такая портянка?\nПожалей участников чата!\nМодераторы - обратите внимание пожалуйста...\n\n© KN-IT Team", disable_notification=True)
+        bot.reply_to(message, "Зачем такая портянка?\nПожалей участников чата!\nМодераторы - обратите внимание пожалуйста...\n@Yari_kova @Snake_ebet_xoxlov @Ev1LcheF\n\n© KN-IT Team", disable_notification=True)
     else:
         pass
 
