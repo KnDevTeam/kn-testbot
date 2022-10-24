@@ -267,9 +267,14 @@ def start(message):
 # Handler for TOO MANY WORDS - Is NOT Admin
 @bot.message_handler(is_admin = False, func=lambda message: True)
 def too_many_words(message):
+    name = message.from_user
+    if name.first_name == None:
+        name.first_name = ""
+    if name.last_name == None:
+        name.last_name = ""
     msg_lens= len(message.text)
     if msg_lens >= 800:
-        bot.reply_to(message, "Ебаааа... Да тебе книги писать надо!\nНо здесь не место для этого, сорян 🤷‍♂\nСообщение удалено!\n\n© KN-IT Team")
+        bot.reply_to(message, f"Эй {name.first_name}, {name.last_name} Ебаааа... 😱\nДа тебе книги писать надо! Но здесь не место для этого, сорян 🤷‍♂\nСообщение удалено!\n\n© KN-IT Team")
         bot.delete_message(message.chat.id, message.message_id)
     elif msg_lens >=650:
         bot.reply_to(message, "Что за портянка? 🤦‍♂\nПожалей участников чата!\nМодераторы - обратите внимание... 🙏\n\n© KN-IT Team")
