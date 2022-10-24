@@ -22,6 +22,14 @@ def foo(message):
     bot.reply_to(message, "welcome")
 """
 
+# SimpleCustomFilter is for boolean values, such as is_admin=True
+class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
+    key='is_admin'
+    @staticmethod
+    def check(message: telebot.types.Message):
+        return bot.get_chat_member(message.chat.id,message.from_user.id).status in ['administrator','creator']
+
+
 
 @bot.message_handler(content_types=["new_chat_members"])
 def welcome(message):
@@ -256,8 +264,8 @@ def start(message):
     bot.delete_message(message.chat.id, msg_id.message_id)
     bot.delete_message(message.chat.id, message.message_id)
 
-# Handler for TOO MANY WORDS
-@bot.message_handler(func=lambda message: True)
+# Handler for TOO MANY WORDS - Is NOT Admin
+@bot.message_handler(is_admin = False, func=lambda message: True)
 def too_many_words(message):
     msg_lens= len(message.text)
     if msg_lens >= 500:
@@ -265,7 +273,19 @@ def too_many_words(message):
     else:
         pass
 
+# Handler for TOO MANY WORDS - Is Admin
+@bot.message_handler(is_admin = True, func=lambda message: True)
+def too_many_words(message):
+    isadminname = message.from_user
+    msg_lens= len(message.text)
+    if msg_lens >= 500:
+        bot.reply_to(message, f"Много букв всётаки. Но ты же {isadminname.first_name}, а значит тебе всё можно 🤭\n\n© KN-IT Team")
+    else:
+        pass
 
+
+# Do not forget to register filters
+bot.add_custom_filter(IsAdmin())
 
 @server.route(f'/{BOT_TOKEN}', methods=['POST'])
 def redirect_message():
