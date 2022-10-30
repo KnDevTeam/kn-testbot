@@ -272,7 +272,7 @@ def too_many_words(message):
         name.first_name = ""
     if name.last_name == None:
         name.last_name = ""
-    msg_lens= len(message.text)
+    msg_lens = len(message.text)
     if msg_lens >= 800:
         bot.reply_to(message, f"Эй {name.first_name}, {name.last_name} Ебаааа... 😱\nДа тебе книги писать надо! Но здесь не место для этого, сорян 🤷‍♂\nСообщение удалено!\n\n© KN-IT Team")
         bot.delete_message(message.chat.id, message.message_id)
@@ -290,6 +290,33 @@ def too_many_words(message):
         bot.reply_to(message, f"Много букв всётаки. Но ты же {isadminname.first_name}, а значит тебе всё можно 🤭\n\n© KN-IT Team")
     else:
         pass
+
+#Command ban code
+@bot.message_handler(is_admin = True, commands=['ban'])
+def getusers(message):
+    if not message.reply_to_message:
+        bot.reply_to(message, "🙄 Ошибка!\nНеобходимо ответить на сообщение. 😏\n\n© KN-IT Team")
+        return
+    
+    # Admins cannot be restricted
+    user = bot.get_chat_member(message.chat.id,message.reply_to_message.from_user.id).status in ['administrator','creator']
+    if user:
+        bot.reply_to(message, "Ты чего это? 🤦‍♂\nАдмин состав нельзя банить... 😂\n\n© KN-IT Team")
+        return
+
+    bot.delete_message(message.chat.id, message.message_id)  # remove admin message
+    bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+    bot.send_message(message.chat.id, "🤖 Упс... \nКто-то выхватил БАН 🤭\n\n© KN-IT Team")
+
+
+@bot.message_handler(is_admin = False, commands=['ban'])
+def getusers(message):
+    if not message.reply_to_message:
+        bot.reply_to(message, "Вау!!\nТы знаешь волшебное слово...\nАккуратней с такой игрушкой! 🤡\n\n© KN-IT Team")
+        return
+
+    bot.reply_to(message, "🤔 Хммм забанить да?\nЯ сейчас тебе бан выпишу... 🤧\n\n© KN-IT Team")
+
 
 
 # Do not forget to register filters
