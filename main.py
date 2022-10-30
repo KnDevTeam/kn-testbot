@@ -30,6 +30,32 @@ class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
         return bot.get_chat_member(message.chat.id,message.from_user.id).status in ['administrator','creator']
 
 
+#Command ban code
+@bot.message_handler(is_admin = True, commands=['ban'])
+def getusers(message):
+    if not message.reply_to_message:
+        bot.reply_to(message, "🙄 Ошибка!\nНеобходимо ответить на сообщение. 😏\n\n© KN-IT Team")
+        return
+    
+    # Admins cannot be restricted
+    user = bot.get_chat_member(message.chat.id,message.reply_to_message.from_user.id).status in ['administrator','creator']
+    if user:
+        bot.reply_to(message, "Ты чего это? 🤦‍♂\nАдмин состав нельзя банить... 😂\n\n© KN-IT Team")
+        return
+
+    bot.delete_message(message.chat.id, message.message_id)  # remove admin message
+    bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+    bot.send_message(message.chat.id, "🤖 Упс... \nКто-то выхватил БАН 🤭\n\n© KN-IT Team")
+
+
+@bot.message_handler(is_admin = False, commands=['ban'])
+def getusers(message):
+    if not message.reply_to_message:
+        bot.reply_to(message, "Вау!!\nТы знаешь волшебное слово...\nАккуратней с такой игрушкой! 🤡\n\n© KN-IT Team")
+        return
+
+    bot.reply_to(message, "🤔 Хммм забанить да?\nЯ сейчас тебе бан выпишу... 🤧\n\n© KN-IT Team")
+
 
 @bot.message_handler(content_types=["new_chat_members"])
 def welcome(message):
@@ -291,31 +317,7 @@ def too_many_words(message):
     else:
         pass
 
-#Command ban code
-@bot.message_handler(is_admin = True, commands=['ban'])
-def getusers(message):
-    if not message.reply_to_message:
-        bot.reply_to(message, "🙄 Ошибка!\nНеобходимо ответить на сообщение. 😏\n\n© KN-IT Team")
-        return
-    
-    # Admins cannot be restricted
-    user = bot.get_chat_member(message.chat.id,message.reply_to_message.from_user.id).status in ['administrator','creator']
-    if user:
-        bot.reply_to(message, "Ты чего это? 🤦‍♂\nАдмин состав нельзя банить... 😂\n\n© KN-IT Team")
-        return
 
-    bot.delete_message(message.chat.id, message.message_id)  # remove admin message
-    bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    bot.send_message(message.chat.id, "🤖 Упс... \nКто-то выхватил БАН 🤭\n\n© KN-IT Team")
-
-
-@bot.message_handler(is_admin = False, commands=['ban'])
-def getusers(message):
-    if not message.reply_to_message:
-        bot.reply_to(message, "Вау!!\nТы знаешь волшебное слово...\nАккуратней с такой игрушкой! 🤡\n\n© KN-IT Team")
-        return
-
-    bot.reply_to(message, "🤔 Хммм забанить да?\nЯ сейчас тебе бан выпишу... 🤧\n\n© KN-IT Team")
 
 
 
