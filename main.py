@@ -64,10 +64,7 @@ def welcome(message):
         name.first_name = ""
     if name.last_name == None:
         name.last_name = ""
-    #lastname = message.from_user
-    welcome = bot.reply_to(message, f"Привет, {name.first_name}, {name.last_name} добро пожаловать!\nЯ слуга КиллЧата и помогаю следить за порядком.\nНадеюсь про Крым нет необходимости спрашивать? 🤭\nПосмотри доступные команды /help\n\n© KN-IT Team")
-    sleep(30)
-    bot.delete_message(message.chat.id, welcome.message_id)
+    bot.reply_to(message, f"Привет, {name.first_name}, {name.last_name}\nПравила чата /rules\nОстальные доступные команды /help\n\n© KN-IT Team")
 
 
 
@@ -76,7 +73,7 @@ def welcome(message):
 def start(message):
 
     username = message.from_user.username
-    msg_start = bot.reply_to(message, f"Привет: {username.first_name} {username.last_name}!\nЯ просто тестовый бот,\nРазработан отделом KN - IT.\n\nЯ сам удалю сообщения через 7 секунд, чтоб не флудить\n\n© KN-IT Team", disable_notification=True)
+    msg_start = bot.reply_to(message, f"Привет: {username.first_name} {username.last_name}!\nЯ просто тестовый бот,\nРазработан отделом KN - IT.\n\n© KN-IT Team", disable_notification=True)
     sleep(7)
     bot.delete_message(message.chat.id, msg_start.message_id)
     bot.delete_message(message.chat.id, message.message_id)
@@ -107,7 +104,7 @@ RULES = '''
 def rules(message):
 
     msg_rules = bot.reply_to(message, RULES, disable_notification=True)
-    sleep(45)
+    sleep(40)
     bot.delete_message(message.chat.id, msg_rules.message_id)
     bot.delete_message(message.chat.id, message.message_id)
 
@@ -128,7 +125,7 @@ HELP = '''
 def help(message):
 
     msg_help = bot.reply_to(message, HELP, disable_notification=True)
-    sleep(30)
+    sleep(25)
     bot.delete_message(message.chat.id, msg_help.message_id)
     bot.delete_message(message.chat.id, message.message_id)
 
@@ -166,7 +163,7 @@ CONTACT = '''
 def contact(message):
 
     msg_contact = bot.reply_to(message, CONTACT, disable_notification=True)
-    sleep(60)
+    sleep(45)
     bot.delete_message(message.chat.id, msg_contact.message_id)
     bot.delete_message(message.chat.id, message.message_id)
 
@@ -220,55 +217,6 @@ def moders(message):
     bot.reply_to(message, MODERS)
 
 
-# Handler for all command
-@bot.message_handler(commands=['allgaghrhreheag'])
-def start(message):
-
-    msg_start = bot.reply_to(message, f"Эта команда выведет список участников, данного чата.\n\nЯ сам удалю сообщения через 7 секунд, чтоб не флудить\n\n© KN-IT Team", disable_notification=True)
-    sleep(7)
-    bot.delete_message(message.chat.id, msg_start.message_id)
-    bot.delete_message(message.chat.id, message.message_id)
-
-
-# Handler for call command
-@bot.message_handler(commands=['callggaeah'])
-def start(message):
-
-    msg_start = bot.reply_to(message, f"Эта команда по дефолту вышлит оповещание, всем участникам данного чата.\nЕсли добален параметр N раз, то с задержкой в 10 сек. вышлет N раз\n\nЯ сам удалю сообщения через 7 секунд, чтоб не флудить\n\n© KN-IT Team", disable_notification=True)
-    sleep(7)
-    bot.delete_message(message.chat.id, msg_start.message_id)
-    bot.delete_message(message.chat.id, message.message_id)
-
-
-# Handler for callu command
-@bot.message_handler(commands=['callurewehyehyweh'])
-def start(message):
-
-    msg_start = bot.reply_to(message, f"Эта команда вышлит оповещание, определённому участнику данного чата.\nЕсли добален параметр N раз, то с задержкой в 10 сек. вышлет N раз\n\nЯ сам удалю сообщения через 7 секунд, чтоб не флудить\n\n© KN-IT Team", disable_notification=True)
-    sleep(7)
-    bot.delete_message(message.chat.id, msg_start.message_id)
-    bot.delete_message(message.chat.id, message.message_id)
-
-
-# Handler for add command
-@bot.message_handler(commands=['addehehewhew'])
-def start(message):
-
-    msg_start = bot.reply_to(message, "Эта команда добавит определённого участника в список, данного чата.\n\nЯ сам удалю сообщения через 7 секунд, чтоб не флудить\n\n© KN-IT Team", disable_notification=True)
-    sleep(7)
-    bot.delete_message(message.chat.id, message.message_id)
-
-
-# Handler for del command
-@bot.message_handler(commands=['delerhehewhrwehe'])
-def start(message):
-
-    msg_start = bot.reply_to(message, "Эта команда удалит определённого участника из списка, данного чата.\n\nЯ сам удалю сообщения через 7 секунд, чтоб не флудить\n\n© KN-IT Team", disable_notification=True)
-    sleep(7)
-    bot.delete_message(message.chat.id, msg_start.message_id)
-    bot.delete_message(message.chat.id, message.message_id)
-
-
 # Handler for getid command
 @bot.message_handler(commands=['getid'])
 def start(message):
@@ -313,7 +261,7 @@ def too_many_words(message):
     isadminname = message.from_user
     msg_lens= len(message.text)
     if msg_lens >= 600:
-        bot.reply_to(message, f"Много букв всётаки. Но ты же {isadminname.first_name}, а значит тебе всё можно 🤭\n\n© KN-IT Team")
+        bot.reply_to(message, f"Много букв всё-таки. Но ты же {isadminname.first_name}, а значит тебе всё можно 🤭\n\n© KN-IT Team")
     else:
         pass
 
