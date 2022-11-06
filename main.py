@@ -114,13 +114,13 @@ HELP = '''
 
 /help - Эта команда вызывает меню помоши
 /contact - Эта команда покажет единственную официальную связь с KILLNET
-/donate - Эта команда позволит увидеть как можно нас поддержать
 /rules - Эта команда укажет на правила в чате
 
 /mod -  Эта команда команда призовёт модераторов в чат
 
 © KN-IT Team
 '''
+# /donate - Эта команда позволит увидеть как можно нас поддержать
 @bot.message_handler(commands=['help'])
 def help(message):
 
@@ -196,6 +196,9 @@ TSQGBoX32EkkmpFDg1gcm6QwiHeoDrACNx
 
 © KN-IT Team
 '''
+
+# Temporary don't work
+'''
 @bot.message_handler(commands=['donate'])
 def donate(message):
 
@@ -203,6 +206,8 @@ def donate(message):
     sleep(60)
     bot.delete_message(message.chat.id, msg_donate.message_id)
     bot.delete_message(message.chat.id, message.message_id)
+
+'''
 
 # Handler for mod command
 MODERS = '''
