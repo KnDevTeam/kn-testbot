@@ -44,9 +44,15 @@ def getusers(message):
         bot.reply_to(message, "Ты чего это? 🤦‍♂\nАдмин состав нельзя банить... 😂\n\n© KN-IT Team")
         return
 
+    name = message.from_user
+    if name.first_name == None:
+        name.first_name = ""
+    if name.last_name == None:
+        name.last_name = ""
+    bot.send_message(message.chat.id, f"🤖 Упс... \n{name.first_name} {name.last_name}, Кто-то выхватил БАН 🤭\n\n© KN-IT Team")
     bot.delete_message(message.chat.id, message.message_id)  # remove admin message
     bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    bot.send_message(message.chat.id, "🤖 Упс... \nКто-то выхватил БАН 🤭\n\n© KN-IT Team")
+    #bot.send_message(message.chat.id, "🤖 Упс... \nКто-то выхватил БАН 🤭\n\n© KN-IT Team")
 
 
 @bot.message_handler(is_admin = False, commands=['ban'])
