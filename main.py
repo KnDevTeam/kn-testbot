@@ -53,7 +53,7 @@ def getusers(message):
     bot.send_message(message.chat.id, f"🤖 Упс... \n{name.first_name} {name.last_name}, выхватил БАН 🤭\n\n© KN-IT Team")
     bot.delete_message(message.chat.id, message.message_id)  # remove admin message
     bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    bot.delete_message(message.chat.id, message.from_user.id)  # remove all messages from baned user
+    #bot.delete_message(message.chat.id, message.from_user.id)  # remove all messages from baned user
     #bot.send_message(message.chat.id, "🤖 Упс... \nКто-то выхватил БАН 🤭\n\n© KN-IT Team")
 
 
@@ -128,11 +128,11 @@ def rules(message):
 HELP = '''
 Команды общего доступа
 
-/help - Эта команда вызывает меню помоши
-/contact - Эта команда покажет единственную официальную связь с KILLNET
-/rules - Эта команда укажет на правила в чате
+/help или /помощь - Эта команда вызывает меню помоши
+/contact или /контакт - Эта команда покажет единственную официальную связь с KILLNET
+/rules или /правила - Эта команда укажет на правила в чате
 
-/mod -  Эта команда команда призовёт модераторов в чат
+/mod или /мод -  Эта команда команда призовёт модераторов в чат
 
 © KN-IT Team
 '''
