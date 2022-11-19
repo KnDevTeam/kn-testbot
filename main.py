@@ -238,7 +238,7 @@ def moders(message):
 
 
 # Handler for getid command
-@bot.message_handler(commands=['getid'])
+@bot.message_handler(is_admin=True, commands=['getid'])
 def start(message):
 
     name = message.reply_to_message.from_user
