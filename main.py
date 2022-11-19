@@ -47,12 +47,13 @@ def getusers(message):
 
     name = message.reply_to_message.from_user
     if name.first_name == None:
-        name.first_name = ""
+        name.first_name = "\"Невидимка\""
     if name.last_name == None:
         name.last_name = ""
     bot.send_message(message.chat.id, f"🤖 Упс... \n{name.first_name} {name.last_name}, выхватил БАН 🤭\n\n© KN-IT Team")
     bot.delete_message(message.chat.id, message.message_id)  # remove admin message
     bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+    bot.delete_message(message.chat.id, message.reply_to_message.from_user.id)  # remove all messages from baned user
     #bot.send_message(message.chat.id, "🤖 Упс... \nКто-то выхватил БАН 🤭\n\n© KN-IT Team")
 
 
@@ -264,7 +265,7 @@ def getid(message):
     else:
         name.is_premium = "Премиум"
 
-    bot.reply_to(message, f"Имя: {name.first_name}\nФамилия: {name.last_name}\nИмя пользователя: @{name.username}\nuser_id: {name.id}\nЯзык: {name.language_code}\nПремиум аккаунт: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
+    bot.reply_to(message, f"Вот что вижу через прицел:\n\nИмя: {name.first_name}\nФамилия: {name.last_name}\nЮзернейм: @{name.username}\nUser_id: {name.id}\nЯзык: {name.language_code}\nПремиум: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
     bot.delete_message(message.chat.id, message.message_id)  # remove admin message
 
 # Handler for getid command NOTAdmin
