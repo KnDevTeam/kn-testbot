@@ -249,6 +249,7 @@ def getid(message):
     if user:
         bot.reply_to(message, "Ты чего это? 🤦‍♂\nНе пали админов... 😂\n\n© KN-IT Team")
         return
+    bot.delete_message(message.chat.id, message.message_id)  # remove admin message
 
 
     name = message.reply_to_message.from_user
