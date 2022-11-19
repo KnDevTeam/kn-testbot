@@ -239,7 +239,17 @@ def moders(message):
 
 # Handler for getid command
 @bot.message_handler(is_admin=True, commands=['getid'])
-def start(message):
+def getid(message):
+    if not message.reply_to_message:
+        bot.reply_to(message, "🙄 Ошибка!\nНеобходимо ответить на сообщение. 😏\n\n© KN-IT Team")
+        return
+    
+    # Admins cannot be restricted
+    user = bot.get_chat_member(message.chat.id,message.reply_to_message.from_user.id).status in ['administrator','creator']
+    if user:
+        bot.reply_to(message, "Ты чего это? 🤦‍♂\nНе пали админов... 😂\n\n© KN-IT Team")
+        return
+
 
     name = message.reply_to_message.from_user
     if name.first_name == None:
@@ -258,6 +268,14 @@ def start(message):
     #sleep(7)
     #bot.delete_message(message.chat.id, msg_id.message_id)
     #bot.delete_message(message.chat.id, message.message_id)
+
+@bot.message_handler(is_admin = False, commands=['getid'])
+def getusers(message):
+    if not message.reply_to_message:
+        bot.reply_to(message, "Вау!!\nТы знаешь волшебную команду...\nАккуратней с такой игрушкой, а то спалят тебя! 🤡\n\n© KN-IT Team")
+        return
+
+    bot.reply_to(message, "🤔 Чё нада?\nЩас в люлю дам... 🤧\n\n© KN-IT Team")
 
 # Handler for TOO MANY WORDS - Is NOT Admin
 @bot.message_handler(is_admin = False, func=lambda message: True)
