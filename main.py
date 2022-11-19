@@ -249,7 +249,7 @@ def getid(message):
     if user:
         bot.reply_to(message, "Ты чего это? 🤦‍♂\nНе пали админов... 😂\n\n© KN-IT Team")
         return
-    bot.delete_message(message.chat.id, message.message_id)  # remove admin message
+    
 
 
     name = message.reply_to_message.from_user
@@ -265,6 +265,7 @@ def getid(message):
         name.is_premium = "Премиум"
 
     bot.reply_to(message, f"Имя: {name.first_name}\nФамилия: {name.last_name}\nИмя пользователя: @{name.username}\nuser_id: {name.id}\nЯзык: {name.language_code}\nПремиум аккаунт: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
+    bot.delete_message(message.chat.id, message.message_id)  # remove admin message
 
 # Handler for getid command NOTAdmin
 @bot.message_handler(is_admin = False, commands=['getid'])
