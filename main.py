@@ -50,7 +50,7 @@ def getusers(message):
         name.first_name = ""
     if name.last_name == None:
         name.last_name = ""
-    bot.send_message(message.chat.id, f"🤖 Упс... \n{name.first_name} {name.last_name}, Кто-то выхватил БАН 🤭\n\n© KN-IT Team")
+    bot.send_message(message.chat.id, f"🤖 Упс... \n{name.first_name} {name.last_name}, выхватил БАН 🤭\n\n© KN-IT Team")
     bot.delete_message(message.chat.id, message.message_id)  # remove admin message
     bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
     #bot.send_message(message.chat.id, "🤖 Упс... \nКто-то выхватил БАН 🤭\n\n© KN-IT Team")
@@ -241,7 +241,7 @@ def moders(message):
 @bot.message_handler(commands=['getid'])
 def start(message):
 
-    name = message.from_user
+    name = message.reply_to_message.from_user
     if name.first_name == None:
         name.first_name = "Не указанно"
     if name.last_name == None:
@@ -253,10 +253,11 @@ def start(message):
     else:
         name.is_premium = "Премиум"
 
-    msg_id = bot.reply_to(message, f"Имя: {name.first_name}\nФамилия: {name.last_name}\nИмя пользователя: @{name.username}\nuser_id: {name.id}\nЯзык: {name.language_code}\nПремиум аккаунт: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
-    sleep(7)
-    bot.delete_message(message.chat.id, msg_id.message_id)
-    bot.delete_message(message.chat.id, message.message_id)
+    bot.reply_to(message, f"Имя: {name.first_name}\nФамилия: {name.last_name}\nИмя пользователя: @{name.username}\nuser_id: {name.id}\nЯзык: {name.language_code}\nПремиум аккаунт: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
+    #msg_id = bot.reply_to(message, f"Имя: {name.first_name}\nФамилия: {name.last_name}\nИмя пользователя: @{name.username}\nuser_id: {name.id}\nЯзык: {name.language_code}\nПремиум аккаунт: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
+    #sleep(7)
+    #bot.delete_message(message.chat.id, msg_id.message_id)
+    #bot.delete_message(message.chat.id, message.message_id)
 
 # Handler for TOO MANY WORDS - Is NOT Admin
 @bot.message_handler(is_admin = False, func=lambda message: True)
