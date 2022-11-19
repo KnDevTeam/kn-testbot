@@ -6,6 +6,7 @@ https://blog.heroku.com/next-chapter
 import os
 from time import sleep
 import telebot
+from telebot import types, util
 import logging
 from config import *
 from flask import Flask, request
@@ -66,6 +67,11 @@ def welcome(message):
         name.last_name = ""
     bot.reply_to(message, f"Привет, {name.first_name}, {name.last_name}\nПравила чата /rules\nОстальные доступные команды /help\n\n© KN-IT Team")
 
+
+# this handler deletes service messages
+@bot.message_handler(content_types=util.content_type_service)
+def delall(message: types.Message):
+    bot.delete_message(message.chat.id,message.message_id)
 
 
 # Handler for start command
