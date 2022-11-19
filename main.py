@@ -44,7 +44,8 @@ def getusers(message):
         bot.reply_to(message, "Ты чего это? 🤦‍♂\nАдмин состав нельзя банить... 😂\n\n© KN-IT Team")
         return
 
-    name = message.from_user
+
+    name = message.reply_to_message.from_user
     if name.first_name == None:
         name.first_name = ""
     if name.last_name == None:
