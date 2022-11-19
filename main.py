@@ -57,7 +57,7 @@ def getusers(message):
 
     bot.reply_to(message, "🤔 Хммм забанить да?\nЯ сейчас тебе бан выпишу... 🤧\n\n© KN-IT Team")
 
-
+'''
 @bot.message_handler(content_types=["new_chat_members"])
 def welcome(message):
     name = message.from_user
@@ -66,10 +66,12 @@ def welcome(message):
     if name.last_name == None:
         name.last_name = ""
     bot.reply_to(message, f"Привет, {name.first_name}, {name.last_name}\nПравила чата /rules\nОстальные доступные команды /help\n\n© KN-IT Team")
+'''
 
 
 # this handler deletes service messages
-@bot.message_handler(content_types=util.content_type_service)
+#@bot.message_handler(content_types=util.content_type_service)
+@bot.message_handler(content_types=["new_chat_members"])
 def delall(message: types.Message):
     bot.delete_message(message.chat.id,message.message_id)
 
