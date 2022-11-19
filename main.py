@@ -32,7 +32,7 @@ class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
 
 
 #Command ban code
-@bot.message_handler(is_admin = True, commands=['ban'])
+@bot.message_handler(is_admin = True, commands=['ban', 'бан'])
 def getusers(message):
     if not message.reply_to_message:
         bot.reply_to(message, "🙄 Ошибка!\nНеобходимо ответить на сообщение. 😏\n\n© KN-IT Team")
@@ -53,11 +53,11 @@ def getusers(message):
     bot.send_message(message.chat.id, f"🤖 Упс... \n{name.first_name} {name.last_name}, выхватил БАН 🤭\n\n© KN-IT Team")
     bot.delete_message(message.chat.id, message.message_id)  # remove admin message
     bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    bot.delete_message(message.chat.id, message.reply_to_message.from_user.id)  # remove all messages from baned user
+    bot.delete_message(message.chat.id, message.from_user.id)  # remove all messages from baned user
     #bot.send_message(message.chat.id, "🤖 Упс... \nКто-то выхватил БАН 🤭\n\n© KN-IT Team")
 
 
-@bot.message_handler(is_admin = False, commands=['ban'])
+@bot.message_handler(is_admin = False, commands=['ban', 'бан'])
 def getusers(message):
     if not message.reply_to_message:
         bot.reply_to(message, "Вау!!\nТы знаешь волшебное слово...\nАккуратней с такой игрушкой! 🤡\n\n© KN-IT Team")
@@ -85,7 +85,7 @@ def delall(message: types.Message):
 
 
 # Handler for start command
-@bot.message_handler(commands=['start'])
+@bot.message_handler(commands=['start', 'старт'])
 def start(message):
 
     username = message.from_user.username
@@ -116,7 +116,7 @@ RULES = '''
 
 © KN-IT Team
 '''
-@bot.message_handler(commands=['rules'])
+@bot.message_handler(commands=['rules', 'правила'])
 def rules(message):
 
     msg_rules = bot.reply_to(message, RULES, disable_notification=True)
@@ -137,7 +137,7 @@ HELP = '''
 © KN-IT Team
 '''
 # /donate - Эта команда позволит увидеть как можно нас поддержать
-@bot.message_handler(commands=['help'])
+@bot.message_handler(commands=['help', 'помощь'])
 def help(message):
 
     msg_help = bot.reply_to(message, HELP, disable_notification=True)
@@ -175,7 +175,7 @@ CONTACT = '''
 
 © KN-IT Team
 '''
-@bot.message_handler(commands=['contact'])
+@bot.message_handler(commands=['contact', 'контакт'])
 def contact(message):
 
     msg_contact = bot.reply_to(message, CONTACT, disable_notification=True)
@@ -232,14 +232,14 @@ MODERS = '''
 
 © KN-IT Team
 '''
-@bot.message_handler(commands=['mod'])
+@bot.message_handler(commands=['mod', 'мод'])
 def moders(message):
 
     bot.reply_to(message, MODERS)
 
 
 # Handler for getid command IsAdmin
-@bot.message_handler(is_admin=True, commands=['getid'])
+@bot.message_handler(is_admin=True, commands=['getid', 'айди'])
 def getid(message):
     if not message.reply_to_message:
         bot.reply_to(message, "🙄 Ошибка!\nНеобходимо ответить на сообщение. 😏\n\n© KN-IT Team")
@@ -269,7 +269,7 @@ def getid(message):
     bot.delete_message(message.chat.id, message.message_id)  # remove admin message
 
 # Handler for getid command NOTAdmin
-@bot.message_handler(is_admin = False, commands=['getid'])
+@bot.message_handler(is_admin = False, commands=['getid', 'айди'])
 def getusers(message):
     if not message.reply_to_message:
         bot.reply_to(message, "Вау!!\nТы знаешь волшебную команду...\nАккуратней с такой игрушкой, а то спалят тебя! 🤡\n\n© KN-IT Team")
