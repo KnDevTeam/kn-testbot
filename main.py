@@ -237,14 +237,14 @@ def moders(message):
     bot.reply_to(message, MODERS)
 
 
-# Handler for getid command
+# Handler for getid command IsAdmin
 @bot.message_handler(is_admin=True, commands=['getid'])
 def getid(message):
     if not message.reply_to_message:
         bot.reply_to(message, "🙄 Ошибка!\nНеобходимо ответить на сообщение. 😏\n\n© KN-IT Team")
         return
     
-    # Admins cannot be restricted
+    # Admins cannot be deanoned
     user = bot.get_chat_member(message.chat.id,message.reply_to_message.from_user.id).status in ['administrator','creator']
     if user:
         bot.reply_to(message, "Ты чего это? 🤦‍♂\nНе пали админов... 😂\n\n© KN-IT Team")
@@ -264,11 +264,8 @@ def getid(message):
         name.is_premium = "Премиум"
 
     bot.reply_to(message, f"Имя: {name.first_name}\nФамилия: {name.last_name}\nИмя пользователя: @{name.username}\nuser_id: {name.id}\nЯзык: {name.language_code}\nПремиум аккаунт: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
-    #msg_id = bot.reply_to(message, f"Имя: {name.first_name}\nФамилия: {name.last_name}\nИмя пользователя: @{name.username}\nuser_id: {name.id}\nЯзык: {name.language_code}\nПремиум аккаунт: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
-    #sleep(7)
-    #bot.delete_message(message.chat.id, msg_id.message_id)
-    #bot.delete_message(message.chat.id, message.message_id)
 
+# Handler for getid command NOTAdmin
 @bot.message_handler(is_admin = False, commands=['getid'])
 def getusers(message):
     if not message.reply_to_message:
@@ -276,6 +273,7 @@ def getusers(message):
         return
 
     bot.reply_to(message, "🤔 Чё нада?\nЩас в люлю дам... 🤧\n\n© KN-IT Team")
+
 
 # Handler for TOO MANY WORDS - Is NOT Admin
 @bot.message_handler(is_admin = False, func=lambda message: True)
