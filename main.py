@@ -253,19 +253,17 @@ def getid(message):
     
 
 
-    name = message.reply_to_message.from_user
-    if name.first_name == None:
-        name.first_name = "Не указанно"
-    if name.last_name == None:
-        name.last_name = "Не указанно"
-    if name.username == None:
-        name.username = "Не указанно"
-    if name.is_premium == False:
-        name.is_premium = "Не премиум"
-    else:
-        name.is_premium = "Премиум"
+    name_gi = message.reply_to_message.from_user
+    if name_gi.first_name == None:
+        name_gi.first_name = "Не указанно"
+    if name_gi.last_name == None:
+        name_gi.last_name = "Не указанно"
+    if name_gi.username == None:
+        name_gi.username = "Не указанно"
+    if name_gi.is_premium == False:
+        name_gi.is_premium = "Не премиум"
 
-    bot.reply_to(message, f"Вот что вижу через прицел:\n\nИмя: {name.first_name}\nФамилия: {name.last_name}\nЮзернейм: @{name.username}\nUser_id: {name.id}\nЯзык: {name.language_code}\nПремиум: {name.is_premium}\n\n© KN-IT Team", disable_notification=True)
+    bot.reply_to(message, f"Вот что вижу через прицел:\n\nИмя: {name_gi.first_name}\nФамилия: {name_gi.last_name}\nЮзернейм: @{name_gi.username}\nUser_id: {name_gi.id}\nЯзык: {name_gi.language_code}\nПремиум: {name_gi.is_premium}\n\n© KN-IT Team", disable_notification=True)
     bot.delete_message(message.chat.id, message.message_id)  # remove admin message
 
 # Handler for getid command NOTAdmin
