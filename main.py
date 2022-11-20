@@ -259,11 +259,15 @@ def getid(message):
     if name_gi.last_name == None:
         name_gi.last_name = "Не указанно"
     if name_gi.username == None:
-        name_gi.username = "Не указанно"
+        name_gi.username = "Отсутствует"
+    if name_gi.language_code == None:
+        name_gi.language_code = "Скрыто"
     if name_gi.is_premium == False:
         name_gi.is_premium = "Не премиум"
+    if name_gi.is_premium == True:
+        name_gi.is_premium = "Премиум"
 
-    bot.reply_to(message, f"Вот что вижу через прицел:\n\nИмя: {name_gi.first_name}\nФамилия: {name_gi.last_name}\nЮзернейм: @{name_gi.username}\nUser_id: {name_gi.id}\nЯзык: {name_gi.language_code}\nПремиум: {name_gi.is_premium}\n\n© KN-IT Team", disable_notification=True)
+    bot.reply_to(message, f"Вот что вижу через прицел:\n\nИмя: {name_gi.first_name}\nФамилия: {name_gi.last_name}\nЮзернейм: @{name_gi.username}\nUser_id: {name_gi.id}\nЯзык: {name_gi.language_code}\nТип: {name_gi.is_premium}\n\n© KN-IT Team", disable_notification=True)
     bot.delete_message(message.chat.id, message.message_id)  # remove admin message
 
 # Handler for getid command NOTAdmin
