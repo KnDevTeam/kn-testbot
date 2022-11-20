@@ -51,8 +51,8 @@ def getusers(message):
     if name.last_name == None:
         name.last_name = ""
     bot.send_message(message.chat.id, f"🤖 Упс... \n{name.first_name} {name.last_name}, выхватил БАН 🤭\n\n© KN-IT Team")
-    bot.delete_message(message.chat.id, message.message_id)  # remove admin message
     bot.delete_message(message.chat.id, message.reply_to_message.from_user.id)  # remove all messages from baned user
+    bot.delete_message(message.chat.id, message.message_id)  # remove admin message
     bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
     #bot.send_message(message.chat.id, "🤖 Упс... \nКто-то выхватил БАН 🤭\n\n© KN-IT Team")
 
