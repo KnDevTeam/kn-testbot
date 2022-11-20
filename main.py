@@ -262,7 +262,7 @@ def getid(message):
         name_gi.username = "Отсутствует"
     if name_gi.language_code == None:
         name_gi.language_code = "Скрыто"
-    if name_gi.is_premium == False:
+    if name_gi.is_premium == None:
         name_gi.is_premium = "Не премиум"
     if name_gi.is_premium == True:
         name_gi.is_premium = "Премиум"
