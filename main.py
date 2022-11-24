@@ -89,7 +89,7 @@ def delall(message: types.Message):
 def start(message):
 
     username = message.from_user
-    msg_start = bot.reply_to(message, f"Привет: {username.first_name} {username.last_name}!\nЯ просто тестовый бот\nРазработан отделом KN - IT.\n\n© KN-IT Team", disable_notification=True)
+    msg_start = bot.reply_to(message, f"Привет: {username.first_name} {username.last_name} :)\nЯ просто тестовый бот\nРазработан отделом KN - IT.\n\n© KN-IT Team", disable_notification=True)
     sleep(7)
     bot.delete_message(message.chat.id, msg_start.message_id)
     bot.delete_message(message.chat.id, message.message_id)
