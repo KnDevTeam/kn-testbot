@@ -236,7 +236,7 @@ def moders(message):
 
 
 # Handler for getid command IsAdmin
-@bot.message_handler(is_admin=True, commands=['getid', 'айди'])
+@bot.message_handler(is_admin=True, commands=['айди'])
 def getid(message):
     if not message.reply_to_message:
         bot.reply_to(message, "🙄 Ошибка!\nНеобходимо ответить на сообщение. 😏\n\n© KN-IT Team")
