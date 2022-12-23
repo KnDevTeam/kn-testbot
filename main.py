@@ -289,7 +289,7 @@ def too_many_words(message):
     #if msg_lens >= 800:
     #    bot.reply_to(message, f"Эй {name.first_name}, {name.last_name} Ебаааа... 😱\nДа тебе книги писать надо! Но здесь не место для этого, сорян 🤷‍♂\nСообщение удалено!\n\n© KN-IT Team")
     #    bot.delete_message(message.chat.id, message.message_id)
-    if msg_lens >=850:
+    if msg_lens >=800:
         bot.reply_to(message, "Что за портянка? 🤦‍♂\nПожалей участников чата!\nМодераторы - обратите внимание... 🙏\n\n© KN-IT Team")
     else:
         pass
