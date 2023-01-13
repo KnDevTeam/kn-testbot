@@ -225,7 +225,7 @@ def donate(message):
 # Handler for mod command
 MODERS = '''
 Модераторы, обратите внимание на пост выше:
-@killnet_AntiBan @Yary_kova @Ev1LcheF
+@killnet_AntiBan @Snake_ebet_xoxlov @Yary_kova @Ev1LcheF
 
 © KN-IT Team
 '''
