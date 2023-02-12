@@ -121,8 +121,6 @@ RULES = '''
 🇷🇺❤️🇷🇺
 
 © KN-IT Team
-
-© KN-IT Team
 '''
 @bot.message_handler(commands=['rules', 'правила'])
 def rules(message):
